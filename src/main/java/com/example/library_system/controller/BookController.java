@@ -65,4 +65,18 @@ public class BookController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // Search books by title
+    @GetMapping("/search/title")
+    public ResponseEntity<List<Book>> searchBooksByTitle(@RequestParam String title) {
+        List<Book> books = bookService.searchBooksByTitle(title);
+        return ResponseEntity.ok(books);
+    }
+
+    // Search books by author's name
+    @GetMapping("/search/author")
+    public ResponseEntity<List<Book>> searchBooksByAuthor(@RequestParam String authorName) {
+        List<Book> books = bookService.searchBooksByAuthorName(authorName);
+        return ResponseEntity.ok(books);
+    }
 }
