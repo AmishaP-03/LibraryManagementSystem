@@ -25,10 +25,13 @@ This is a RESTful API for managing a simple library system, allowing users to pe
    
 5. Once the application is running, you can access the API documentation at:
     ```bash
-   http://localhost:8080/swagger-ui/
+   http://localhost:8080/swagger-ui.html
 
 ## Testing the application
 
-1. You can use Postman or any other API testing tool to test the APIs.
-2. You can create a Postman collection to test the APIs. Once you create the collection in Postman, export it and save it as `Postman_collection.json` in the project root directory.
+1. Open Postman.
+2. Import the collection by navigating to **File > Import**.
+3. Select the `Postman_collection.json` file located in the root of this project.
+4. Once imported, you will see all the endpoints under the "Library System API" collection in Postman.
+5. Modify the requests as needed and hit **Send** to test the API.
 
