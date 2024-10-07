@@ -2,6 +2,8 @@ package com.example.library_system.controller;
 
 import com.example.library_system.entity.Book;
 import com.example.library_system.service.BookService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
+@Tag(name = "Books", description = "Operations related to books in the library")
 public class BookController {
 
     @Autowired
@@ -24,6 +27,7 @@ public class BookController {
 
     // Get book by ID
     @GetMapping("/{id}")
+    @Operation(summary = "Retrieve a book by ID", description = "Fetches a book's details using its unique ID")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         Optional<Book> book = bookService.getBookById(id);
         return book.map(ResponseEntity::ok)
@@ -32,12 +36,14 @@ public class BookController {
 
     // Create a new book
     @PostMapping
+    @Operation(summary = "Create a new book", description = "Adds a new book to the library")
     public Book createBook(@RequestBody Book book) {
         return bookService.createBook(book);
     }
 
     // Update an existing book
     @PutMapping("/{id}")
+    @Operation(summary = "Update an existing book", description = "Updates the details of an existing book in the library")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
         try {
             // Call service to update book
@@ -50,6 +56,7 @@ public class BookController {
 
     // Delete a book
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete a book by ID", description = "Removes a book from the library by its unique ID")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         boolean isDeleted = bookService.deleteBook(id);
         if (isDeleted) {
